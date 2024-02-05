@@ -1,8 +1,53 @@
 @import-normalize;
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap");
+
 * {
   box-sizing: border-box;
   margin: 0;
 }
 
 :root {
+  //_Font
+  --f-family: "Space Grotesk", sans-serif;
+  --f-weights: 500;
+  --f-size: 18px;
+
+  --l-spacing: 0.1rem;
+
+  //_Color:
+  --primary-gradient: #6448fe to #600594; // active input border)
+
+  --red: #ff5252;
+  --white: #ffffff;
+
+  --violet-100: #dedddf;
+  --violet-200: #8e8593;
+  --violet-300: #21092f;
+}
+
+html,
+body {
+  font-size: var(--f-size);
+}
+
+body {
+  min-height: 100vh;
+  font-family: var(--f-family);
+  font-weight: var(--f-weights);
+  color: var(--violet-300);
+  letter-spacing: 0.1rem;
+  padding: 50px; //! temporarily
+  // background: url("../src/assets/bg-main-desktop.png") no-repeat;
+  // background-size: 33.33%;
+}
+
+.card {
+  height: 245px;
+  width: 450px;
+  color: var(--white);
+  overflow: hidden;
+  border-radius: 10px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

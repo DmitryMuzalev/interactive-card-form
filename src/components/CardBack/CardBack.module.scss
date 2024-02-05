@@ -1,0 +1,12 @@
+.cardBack {
+  position: relative;
+  background-image: url("../../assets/bg-card-back.png");
+  &::before {
+    content: "000";
+    position: absolute;
+    top: 50%;
+    right: 55px;
+    transform: translateY(-50%);
+    padding-bottom: 4px;
+  }
+}

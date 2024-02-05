@@ -1,0 +1,24 @@
+.cardFront {
+  display: flex;
+  flex-direction: column;
+  padding: 25px 30px;
+  background-image: url("../../assets/bg-card-front.png");
+  text-transform: uppercase;
+
+  &Info {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+  }
+
+  &Number {
+    letter-spacing: 0.2rem;
+    font-size: 1.5rem;
+  }
+
+  &Label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
