@@ -2,7 +2,7 @@ import styles from "./Form.module.scss";
 
 function Form() {
   return (
-    <form className={styles.form}>
+    <form className={styles.form} autoComplete="off">
       <div className={styles.formItem}>
         <label htmlFor="name">cardholder name</label>
         <input
@@ -15,7 +15,7 @@ function Form() {
       <div className={styles.formItem}>
         <label htmlFor="number">card number</label>
         <input
-          type="number"
+          type="text"
           id="number"
           name="number"
           placeholder="e.g. 1234 56789123 0000"
@@ -24,12 +24,14 @@ function Form() {
       <div className={styles.formItems}>
         <div className={styles.formItem}>
           <label htmlFor="month">exp. date (mm/yy)</label>
-          <input type="number" id="month" name="month" placeholder="MM" />
-          <input type="number" id="year" name="year" placeholder="YY" />
+          <div className={styles.formDateInputs}>
+            <input type="number" id="month" name="month" placeholder="MM" />
+            <input type="number" id="year" name="year" placeholder="YY" />
+          </div>
         </div>
         <div className={styles.formItem}>
           <label htmlFor="cvc">cvc</label>
-          <input type="number" id="cvc" name="cvc" placeholder="e.g. 123" />
+          <input type="text" id="cvc" name="cvc" placeholder="e.g. 123" />
         </div>
       </div>
       <button type="submit">Confirm</button>
