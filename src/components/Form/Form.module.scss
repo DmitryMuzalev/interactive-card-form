@@ -12,8 +12,12 @@
     border-radius: 7px;
     font-family: inherit;
     letter-spacing: inherit;
-    &::placeholder {
+ 
+    &:focus, &:active {
+      outline: none;
+      border-color:var(--violet-300)
     }
+    
   }
 
   &Item {

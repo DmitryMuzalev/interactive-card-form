@@ -1,4 +1,5 @@
 import styles from "./Form.module.scss";
+import { Button } from "components/Button/Button";
 
 function Form() {
   return (
@@ -25,8 +26,8 @@ function Form() {
         <div className={styles.formItem}>
           <label htmlFor="month">exp. date (mm/yy)</label>
           <div className={styles.formDateInputs}>
-            <input type="number" id="month" name="month" placeholder="MM" />
-            <input type="number" id="year" name="year" placeholder="YY" />
+            <input type="text" id="month" name="month" placeholder="MM" />
+            <input type="text" id="year" name="year" placeholder="YY" />
           </div>
         </div>
         <div className={styles.formItem}>
@@ -34,7 +35,7 @@ function Form() {
           <input type="text" id="cvc" name="cvc" placeholder="e.g. 123" />
         </div>
       </div>
-      <button type="submit">Confirm</button>
+      <Button>Confirm</Button>
     </form>
   );
 }

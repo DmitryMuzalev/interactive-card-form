@@ -1,24 +1,41 @@
 .cardFront {
   display: flex;
   flex-direction: column;
-  padding: 25px 30px;
+  gap: 10px;
+  padding: 25px 20px;
   background-image: url("../../assets/bg-card-front.png");
   text-transform: uppercase;
 
   &Info {
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
-    row-gap: 2rem;
+    justify-content: end;
+    row-gap: 1.5rem;
   }
 
   &Number {
     letter-spacing: var(--l-spacing-big);
-    font-size: 2rem;
+    font-size: 1.15rem;
   }
 
   &Label {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    font-size: 0.7rem;
+  }
+
+  @media (min-width: 992px) {
+    padding: 25px 30px;
+    &Info {
+      row-gap: 2rem;
+    }
+    &Number {
+      font-size: 2rem;
+    }
+    &Label {
+      font-size: 1rem;
+    }
   }
 }
