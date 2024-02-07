@@ -11,8 +11,8 @@
   --f-family: "Space Grotesk", sans-serif;
   --f-weights: 500;
   --f-size: 14px;
-  --l-spacing-small: 0.15rem;
-  --l-spacing-big: 0.25rem;
+  --l-spacing-small: 2px;
+  --l-spacing-big: 3.5px;
 
   //_Color:
   --primary-gradient: #6448fe to #600594; // active input border)
@@ -28,7 +28,7 @@
 
 html,
 body {
-  font-size: var(--f-size);
+  font-size: 20px;
 }
 
 body {
@@ -76,13 +76,16 @@ body {
 }
 
 .cards {
+  flex-shrink: 1;
   display: flex;
   flex-direction: column-reverse;
-  width: 380px;
+  width: 350px;
+
   & > *:last-child {
     align-self: end;
     margin-bottom: -70px;
   }
+
   & > *:first-child {
     position: relative;
     z-index: 2;
@@ -92,6 +95,7 @@ body {
     flex-direction: column;
     width: 540px;
     row-gap: 2.5rem;
+
     & > *:last-child {
       margin-bottom: 0;
     }

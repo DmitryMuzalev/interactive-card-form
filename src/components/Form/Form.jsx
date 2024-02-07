@@ -3,7 +3,13 @@ import { Button } from "components/Button/Button";
 
 function Form() {
   return (
-    <form className={styles.form} autoComplete="off">
+    <form
+      className={styles.form}
+      autoComplete="off"
+      onSubmit={(e) => {
+        e.preventDefault();
+      }}
+    >
       <div className={styles.formItem}>
         <label htmlFor="name">cardholder name</label>
         <input

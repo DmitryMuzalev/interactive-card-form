@@ -1,6 +1,7 @@
 .cardBack {
   position: relative;
   background-image: url("../../assets/bg-card-back.png");
+
   &::before {
     content: "000";
     position: absolute;
@@ -8,5 +9,12 @@
     right: 12%;
     transform: translateY(-50%);
     padding-bottom: 4px;
+    font-size: 10px;
+  }
+
+  @media (min-width: 992px) {
+    &::before {
+      font-size: 1rem;
+    }
   }
 }
