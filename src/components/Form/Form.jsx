@@ -1,14 +1,21 @@
+import { FormField } from "components/FormField/FormField";
 import styles from "./Form.module.scss";
 import { Button } from "components/Button/Button";
+import { FormDateFields } from "components/FormDateFields/FormDateFields";
 
 function Form({
   name,
   numberCard,
   month,
+  year,
+  CVC,
+  handlerInputCVC,
   handlerInputName,
   handlerInputNumber,
   handlerInputMonth,
   onBlurInputMonth,
+  handlerInputYear,
+  onBlurInputYear,
 }) {
   return (
     <form
@@ -18,49 +25,36 @@ function Form({
         e.preventDefault();
       }}
     >
-      <div className={styles.formItem}>
-        <label htmlFor="name">cardholder name</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          placeholder="e.g. Jane Appleseed"
-          value={name}
-          onChange={handlerInputName}
-          maxLength={40}
-        />
-      </div>
-      <div className={styles.formItem}>
-        <label htmlFor="number">card number</label>
-        <input
-          type="text"
-          id="number"
-          name="number"
-          placeholder="e.g. 1234 5678 9123 0000"
-          value={numberCard}
-          onChange={handlerInputNumber}
-        />
-      </div>
+      <FormField
+        name="name"
+        label="cardholder name"
+        value={name}
+        handlerOnChange={handlerInputName}
+        placeholder="e.g. Jane Appleseed"
+      />
+      <FormField
+        name="number"
+        label="card number"
+        value={numberCard}
+        handlerOnChange={handlerInputNumber}
+        placeholder="e.g. 1234 5678 9123 0000"
+      />
       <div className={styles.formItems}>
-        <div className={styles.formItem}>
-          <label htmlFor="month">exp. date (mm/yy)</label>
-          <div className={styles.formDateInputs}>
-            <input
-              type="text"
-              id="month"
-              name="month"
-              placeholder="MM"
-              value={month}
-              onChange={handlerInputMonth}
-              onBlur={onBlurInputMonth}
-            />
-            <input type="text" id="year" name="year" placeholder="YY" />
-          </div>
-        </div>
-        <div className={styles.formItem}>
-          <label htmlFor="cvc">cvc</label>
-          <input type="text" id="cvc" name="cvc" placeholder="e.g. 123" />
-        </div>
+        <FormDateFields
+          month={month}
+          handlerInputMonth={handlerInputMonth}
+          onBlurInputMonth={onBlurInputMonth}
+          year={year}
+          handlerInputYear={handlerInputYear}
+          onBlurInputYear={onBlurInputYear}
+        />
+        <FormField
+          name="cvc"
+          label="cvc"
+          value={CVC}
+          handlerOnChange={handlerInputCVC}
+          placeholder="e.g. 123"
+        />
       </div>
       <Button>Confirm</Button>
     </form>

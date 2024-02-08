@@ -9,6 +9,8 @@ function App() {
   const [name, setName] = useState("");
   const [numberCard, setNumberCard] = useState("");
   const [month, setMonth] = useState("");
+  const [year, setYear] = useState("");
+  const [CVC, setCVC] = useState("");
 
   const handlerInputName = (e) => {
     const value = e.target.value;
@@ -45,6 +47,32 @@ function App() {
     }
   };
 
+  const handlerInputYear = (e) => {
+    const value = e.target.value;
+    const v = value.replace(/[^0-9]/gi, "").substr(0, 2);
+
+    if (v === "00") {
+      setYear("01");
+    } else setYear(v);
+  };
+
+  const onBlurInputYear = (e) => {
+    const value = e.target.value;
+    if (value.length === 1) {
+      if (value !== "0") {
+        setYear(value.padStart(2, "0"));
+      } else {
+        setYear("01");
+      }
+    }
+  };
+
+  const handlerInputCVC = (e) => {
+    const value = e.target.value;
+    const v = value.replace(/[^0-9]/gi, "").substr(0, 4);
+    setCVC(v);
+  };
+
   return (
     <Container>
       <div className="cards">
@@ -55,10 +83,15 @@ function App() {
         name={name}
         numberCard={numberCard}
         month={month}
+        year={year}
+        CVC={CVC}
         handlerInputName={handlerInputName}
         handlerInputNumber={handlerInputNumber}
         handlerInputMonth={handlerInputMonth}
         onBlurInputMonth={onBlurInputMonth}
+        handlerInputYear={handlerInputYear}
+        onBlurInputYear={onBlurInputYear}
+        handlerInputCVC={handlerInputCVC}
       />
     </Container>
   );
