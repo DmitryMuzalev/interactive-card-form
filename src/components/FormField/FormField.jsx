@@ -1,18 +1,22 @@
-import styles from "./FormField.module.scss";
+import { Input } from "components/Input/Input";
 
-function FormField({ name, value, handlerOnChange, label, placeholder }) {
+function FormField({
+  name,
+  handlerOnChange,
+  handlerOnBlur,
+  label,
+  placeholder,
+  isConfirm,
+}) {
   return (
-    <div className={styles.formItem}>
+    <div className="form__item">
       <label htmlFor={name}>{label}</label>
-      <input
-        type="text"
-        id={name}
-        name={name}
+      <Input
+        isConfirm={isConfirm}
         placeholder={placeholder}
-        value={value}
-        onChange={handlerOnChange}
+        handlerOnBlur={handlerOnBlur}
+        handlerOnChange={handlerOnChange}
       />
-      <span className={styles.formErrorMessage}>Error message</span>
     </div>
   );
 }

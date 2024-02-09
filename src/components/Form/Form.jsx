@@ -1,45 +1,52 @@
 import { FormField } from "components/FormField/FormField";
-import styles from "./Form.module.scss";
 import { Button } from "components/Button/Button";
-import { FormDateFields } from "components/FormDateFields/FormDateFields";
+import {
+  handlerOnChangeName,
+  handlerOnBlurName,
+  handlerOnChangeNumber,
+  handlerOnBlurNumber,
+  handlerOnChangeCVC,
+  handlerOnBlurCVC,
+} from "util/fieldValidation";
+//import { FormDateFields } from "components/FormDateFields/FormDateFields";
 
-function Form({
-  name,
-  numberCard,
-  month,
-  year,
-  CVC,
-  handlerInputCVC,
-  handlerInputName,
-  handlerInputNumber,
-  handlerInputMonth,
-  onBlurInputMonth,
-  handlerInputYear,
-  onBlurInputYear,
-}) {
+function Form({ setIsConfirm, isConfirm }) {
   return (
     <form
-      className={styles.form}
+      className="form"
       autoComplete="off"
       onSubmit={(e) => {
         e.preventDefault();
+        setIsConfirm(true);
       }}
     >
       <FormField
         name="name"
         label="cardholder name"
-        value={name}
-        handlerOnChange={handlerInputName}
         placeholder="e.g. Jane Appleseed"
+        isConfirm={isConfirm}
+        handlerOnChange={handlerOnChangeName}
+        handlerOnBlur={handlerOnBlurName}
       />
       <FormField
         name="number"
         label="card number"
-        value={numberCard}
-        handlerOnChange={handlerInputNumber}
         placeholder="e.g. 1234 5678 9123 0000"
+        isConfirm={isConfirm}
+        handlerOnChange={handlerOnChangeNumber}
+        handlerOnBlur={handlerOnBlurNumber}
       />
-      <div className={styles.formItems}>
+
+      <FormField
+        name="cvc"
+        label="cvc"
+        placeholder="e.g. 123"
+        isConfirm={isConfirm}
+        handlerOnChange={handlerOnChangeCVC}
+        handlerOnBlur={handlerOnBlurCVC}
+      />
+
+      {/*      <div className="form__items">
         <FormDateFields
           month={month}
           handlerInputMonth={handlerInputMonth}
@@ -54,8 +61,9 @@ function Form({
           value={CVC}
           handlerOnChange={handlerInputCVC}
           placeholder="e.g. 123"
+          isConfirm={isConfirm}
         />
-      </div>
+      </div> */}
       <Button>Confirm</Button>
     </form>
   );

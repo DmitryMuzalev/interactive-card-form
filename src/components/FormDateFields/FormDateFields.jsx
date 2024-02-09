@@ -1,5 +1,3 @@
-import styles from "./FormDateFields.module.scss";
-
 function FormDateFields({
   month,
   handlerInputMonth,
@@ -9,9 +7,9 @@ function FormDateFields({
   onBlurInputYear,
 }) {
   return (
-    <div className={styles.formItem}>
+    <div className="form__item">
       <label htmlFor="month">exp. date (mm/yy)</label>
-      <div className={styles.formDateInputs}>
+      <div className="form__dateInputs">
         <input
           type="text"
           id="month"
@@ -31,7 +29,7 @@ function FormDateFields({
           onBlur={onBlurInputYear}
         />
       </div>
-      <span className={styles.formErrorMessage}>Error message</span>
+      <span className="errorMessage">Error message</span>
     </div>
   );
 }
