@@ -1,11 +1,17 @@
-function FormDateFields({
-  month,
-  handlerInputMonth,
-  onBlurInputMonth,
-  year,
-  handlerInputYear,
-  onBlurInputYear,
-}) {
+import { useAppContext } from "hook/useAppContext";
+
+function FormDateFields() {
+  const {
+    month,
+    year,
+    dateError,
+    isConfirm,
+    handlerOnChangeMonth,
+    handlerOnBlurMonth,
+    handlerOnChangeYear,
+    handlerOnBlurYear,
+  } = useAppContext();
+
   return (
     <div className="form__item">
       <label htmlFor="month">exp. date (mm/yy)</label>
@@ -16,8 +22,8 @@ function FormDateFields({
           name="month"
           placeholder="MM"
           value={month}
-          onChange={handlerInputMonth}
-          onBlur={onBlurInputMonth}
+          onChange={handlerOnChangeMonth}
+          onBlur={handlerOnBlurMonth}
         />
         <input
           type="text"
@@ -25,11 +31,13 @@ function FormDateFields({
           name="year"
           placeholder="YY"
           value={year}
-          onChange={handlerInputYear}
-          onBlur={onBlurInputYear}
+          onChange={handlerOnChangeYear}
+          onBlur={handlerOnBlurYear}
         />
       </div>
-      <span className="errorMessage">Error message</span>
+      {isConfirm && dateError && (
+        <span className="errorMessage">{dateError}</span>
+      )}
     </div>
   );
 }

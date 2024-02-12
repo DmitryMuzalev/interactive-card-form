@@ -1,10 +1,17 @@
-import { createContext, useState } from "react";
-import { cardNumberFormatter } from "util/cardNumberFormatter";
+import { createContext, useEffect, useState } from "react";
+
 import {
-  checkEmptyField,
-  checkNumbersOnly,
-  checkNotShortValue,
-} from "util/fieldValidation";
+  cardNumberFormatter,
+  CVCFormatter,
+  NameFormatter,
+} from "util/fieldsFormatters";
+import {
+  handlerOnBlurDateField,
+  handlerOnBlurField,
+  handlerOnChangeDateField,
+  handlerOnChangeField,
+} from "util/fieldsHandlers";
+import { checkEmptyField } from "util/fieldValidation";
 
 export const Context = createContext(null);
 
@@ -18,65 +25,70 @@ export function AppContext({ children }) {
   const [CVC, setCVC] = useState("");
   const [CVCError, setCVCError] = useState("");
 
+  const [month, setMonth] = useState("");
+  const [year, setYear] = useState("");
+  const [dateError, setDateError] = useState("");
+
   const [isConfirm, setIsConfirm] = useState(false);
+
+  useEffect(() => {
+    isConfirm && checkEmptyField(name) && setNameError("Can't be blank");
+    isConfirm && checkEmptyField(number) && setNumberError("Can't be blank");
+    isConfirm && checkEmptyField(CVC) && setCVCError("Can't be blank");
+    isConfirm &&
+      (checkEmptyField(month) || checkEmptyField(year)) &&
+      setDateError("Can't be blank");
+  }, [isConfirm]);
 
   //*_Handlers:
   //_Name:
-  const handlerOnChangeName = (e) => {
-    const value = e.target.value;
-    const v = value.replace(/[^A-Za-z\s]*$/gi, "").substr(0, 21);
-    setName(v);
-    setNameError("");
-  };
-
-  const handlerOnBlurName = (e) => {
-    const value = e.target.value;
-    if (checkEmptyField(value)) {
-      setNameError("Can't be blank");
-    } else if (checkNotShortValue(value, 4)) {
-      setNameError("Name is too short");
-    }
-  };
+  const handlerOnChangeName = handlerOnChangeField(
+    setName,
+    setNameError,
+    NameFormatter
+  );
+  const handlerOnBlurName = handlerOnBlurField("Name", setNameError, 4);
 
   //_Number:
-  const handlerOnChangeNumber = (e) => {
-    const value = e.target.value;
-    setNumber(cardNumberFormatter(value.trim()));
-    setNumberError("");
-  };
-
-  const handlerOnBlurNumber = (e) => {
-    const value = e.target.value;
-    if (checkEmptyField(value)) {
-      setNumberError("Can't be blank");
-    } else if (checkNotShortValue(value, 19)) {
-      setNumberError("Number is too short");
-    } else if (!checkNumbersOnly(value)) {
-      setNumberError("Wrong format, numbers only");
-    }
-  };
+  const handlerOnChangeNumber = handlerOnChangeField(
+    setNumber,
+    setNumberError,
+    cardNumberFormatter
+  );
+  const handlerOnBlurNumber = handlerOnBlurField("Number", setNumberError, 19);
 
   //_CVC:
-  const handlerOnChangeCVC = (e) => {
-    const value = e.target.value;
-    const v = value.replace(/[^0-9]/gi, "").substr(0, 4);
-    setCVC(v);
-    setCVCError("");
-  };
+  const handlerOnChangeCVC = handlerOnChangeField(
+    setCVC,
+    setCVCError,
+    CVCFormatter
+  );
+  const handlerOnBlurCVC = handlerOnBlurField("CVC", setCVCError, 3);
 
-  const handlerOnBlurCVC = (e) => {
-    const value = e.target.value;
-    if (checkEmptyField(value)) {
-      setCVCError("Can't be blank");
-    } else if (checkNotShortValue(value, 3)) {
-      setCVCError("CVC is too short");
-    }
-  };
+  //*_Date:
+
+  //_Month:
+  const handlerOnChangeMonth = handlerOnChangeDateField(
+    "month",
+    setMonth,
+    setDateError
+  );
+  const handlerOnBlurMonth = handlerOnBlurDateField(setMonth, setDateError);
+
+  //_Year:
+  const handlerOnChangeYear = handlerOnChangeDateField(
+    "year",
+    setYear,
+    setDateError
+  );
+  const handlerOnBlurYear = handlerOnBlurDateField(setYear, setDateError);
 
   const resetForm = () => {
     setCVC("");
     setName("");
     setNumber("");
+    setMonth("");
+    setYear("");
   };
 
   const state = {
@@ -86,6 +98,9 @@ export function AppContext({ children }) {
     numberError,
     CVC,
     CVCError,
+    month,
+    year,
+    dateError,
     isConfirm,
     resetForm,
     setIsConfirm,
@@ -95,6 +110,10 @@ export function AppContext({ children }) {
     handlerOnBlurNumber,
     handlerOnChangeCVC,
     handlerOnBlurCVC,
+    handlerOnChangeMonth,
+    handlerOnBlurMonth,
+    handlerOnChangeYear,
+    handlerOnBlurYear,
   };
 
   return <Context.Provider value={state}>{children}</Context.Provider>;

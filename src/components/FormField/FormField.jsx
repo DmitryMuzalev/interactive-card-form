@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { checkEmptyField } from "util/fieldValidation";
+import { useAppContext } from "hook/useAppContext";
 
 function FormField({
   name,
@@ -8,9 +7,10 @@ function FormField({
   handlerOnBlur,
   label,
   placeholder,
-  isConfirm,
   error,
 }) {
+  const { isConfirm } = useAppContext();
+
   return (
     <div className="form__item">
       <label htmlFor={name}>{label}</label>
