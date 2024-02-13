@@ -1,5 +1,6 @@
 @import-normalize;
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,500;1,500&display=swap");
 
 * {
   box-sizing: border-box;
@@ -9,6 +10,7 @@
 :root {
   //_Font
   --f-family: "Space Grotesk", sans-serif;
+  --f-family-secondary: "Roboto Mono", monospace;
   --f-weights: 500;
   --f-size: 14px;
   --l-spacing-small: 2px;
@@ -109,6 +111,7 @@ body {
   width: 285px;
   color: var(--white);
   overflow: hidden;
+  font-family: var(--f-family-secondary);
   border-radius: 10px;
   background-position: center;
   background-repeat: no-repeat;
@@ -183,4 +186,8 @@ body {
 .errorMessage {
   font-size: 0.857rem;
   color: var(--red);
+}
+
+.errorField {
+  border: 1px solid var(--red) !important;
 }

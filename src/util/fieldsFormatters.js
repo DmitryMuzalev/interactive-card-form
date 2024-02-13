@@ -1,4 +1,4 @@
-function cardNumberFormatter(value) {
+function numberFormatter(value) {
   const v = value.replace(/\s+/g, "").substr(0, 16);
   const parts = [];
   for (let i = 0; i < v.length; i += 4) {
@@ -7,7 +7,7 @@ function cardNumberFormatter(value) {
   return parts.length > 1 ? parts.join(" ") : value;
 }
 
-function NameFormatter(value) {
+function nameFormatter(value) {
   return value.replace(/[^A-Za-z\s]*$/gi, "").substr(0, 21);
 }
 
@@ -15,4 +15,4 @@ function CVCFormatter(value) {
   return value.replace(/[^0-9]/gi, "").substr(0, 4);
 }
 
-export { cardNumberFormatter, NameFormatter, CVCFormatter };
+export { numberFormatter, nameFormatter, CVCFormatter };

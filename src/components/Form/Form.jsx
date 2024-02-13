@@ -2,28 +2,34 @@ import { FormField } from "components/FormField/FormField";
 import { Button } from "components/Button/Button";
 import { useAppContext } from "hook/useAppContext";
 import { FormDateFields } from "components/FormDateFields/FormDateFields";
+import {
+  nameFormatter,
+  numberFormatter,
+  CVCFormatter,
+} from "util/fieldsFormatters";
 
 function Form() {
   const {
     name,
+    setName,
     nameError,
+    setNameError,
     number,
+    setNumber,
     numberError,
+    setNumberError,
     CVC,
+    setCVC,
     CVCError,
-    setIsConfirm,
-    handlerOnChangeName,
-    handlerOnBlurName,
-    handlerOnChangeNumber,
-    handlerOnBlurNumber,
-    handlerOnChangeCVC,
-    handlerOnBlurCVC,
+    setCVCError,
+    dateError,
     resetForm,
+    setIsConfirm,
   } = useAppContext();
 
   const handlerOnSubmit = (e) => {
     e.preventDefault();
-    !nameError && !numberError && !CVCError && resetForm();
+    !nameError && !numberError && !CVCError && !dateError && resetForm();
     setIsConfirm(true);
   };
 
@@ -32,20 +38,24 @@ function Form() {
       <FormField
         name="name"
         value={name}
+        setValue={setName}
+        error={nameError}
+        setError={setNameError}
+        formatter={nameFormatter}
         label="cardholder name"
         placeholder="e.g. Jane Appleseed"
-        handlerOnChange={handlerOnChangeName}
-        handlerOnBlur={handlerOnBlurName}
-        error={nameError}
+        min={4}
       />
       <FormField
         name="number"
         value={number}
+        setValue={setNumber}
+        error={numberError}
+        setError={setNumberError}
+        formatter={numberFormatter}
         label="card number"
         placeholder="e.g. 1234 5678 9123 0000"
-        handlerOnChange={handlerOnChangeNumber}
-        handlerOnBlur={handlerOnBlurNumber}
-        error={numberError}
+        min={19}
       />
 
       <div className="form__items">
@@ -53,11 +63,13 @@ function Form() {
         <FormField
           name="cvc"
           value={CVC}
+          setValue={setCVC}
+          error={CVCError}
+          setError={setCVCError}
+          formatter={CVCFormatter}
           label="cvc"
           placeholder="e.g. 123"
-          handlerOnChange={handlerOnChangeCVC}
-          handlerOnBlur={handlerOnBlurCVC}
-          error={CVCError}
+          min={3}
         />
       </div>
 
