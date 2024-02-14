@@ -12,6 +12,9 @@ function CardFront() {
     number.split(" ").join("").padEnd(16, "0")
   );
 
+  const printMonth = date.month.padStart(2, "0");
+  const printYear = date.year.padStart(2, "0");
+
   return (
     <div className={cardFrontStyles}>
       <img src={cardLogo} alt="card logo" />
@@ -19,7 +22,7 @@ function CardFront() {
         <div className={styles.cardFrontNumber}>{printNumber}</div>
         <div className={styles.cardFrontLabel}>
           <span>{name ? name : "jane appleseed"}</span>
-          <span>00/00</span>
+          <span>{`${printMonth}/${printYear}`}</span>
         </div>
       </div>
     </div>

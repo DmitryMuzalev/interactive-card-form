@@ -25,12 +25,16 @@ function Form() {
     dateError,
     resetForm,
     setIsConfirm,
+    setIsSent,
   } = useAppContext();
 
   const handlerOnSubmit = (e) => {
     e.preventDefault();
-    !nameError && !numberError && !CVCError && !dateError && resetForm();
     setIsConfirm(true);
+    if (!nameError && !numberError && !CVCError && !dateError) {
+      resetForm();
+      setIsSent(true);
+    }
   };
 
   return (

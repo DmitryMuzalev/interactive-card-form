@@ -1,0 +1,17 @@
+.final {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  color: var(--violet-200);
+  h2 {
+    color: var(--violet-300);
+    text-transform: uppercase;
+    font-size: 2.5rem;
+  }
+  button {
+    align-self: stretch;
+    margin-top: 20px;
+  }
+}

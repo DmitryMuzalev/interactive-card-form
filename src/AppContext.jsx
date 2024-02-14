@@ -20,6 +20,7 @@ export function AppContext({ children }) {
   const [dateError, setDateError] = useState("");
 
   const [isConfirm, setIsConfirm] = useState(false);
+  const [isSent, setIsSent] = useState(false);
 
   useEffect(() => {
     isConfirm && checkEmptyField(name) && setNameError("Can't be blank");
@@ -57,6 +58,8 @@ export function AppContext({ children }) {
     resetForm,
     isConfirm,
     setIsConfirm,
+    isSent,
+    setIsSent,
   };
 
   return <Context.Provider value={state}>{children}</Context.Provider>;

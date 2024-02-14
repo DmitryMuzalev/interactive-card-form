@@ -125,7 +125,7 @@ body {
 
 //_Form:
 .form {
-  width: 380px;
+  max-width: 380px;
   display: flex;
   flex-direction: column;
   row-gap: 30px;
