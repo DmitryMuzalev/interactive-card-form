@@ -8,7 +8,6 @@ import { useAppContext } from "hook/useAppContext";
 function App() {
   const { isSent } = useAppContext();
 
-  console.log(isSent);
   return (
     <Container>
       <div className="cards">
